@@ -57,6 +57,9 @@
 		.field {
 			margin-bottom: .5rem;
 		}
+		.field2 {
+			margin-bottom: .1rem;
+		}
 
 		input {
 			font-size: 1rem;
@@ -72,7 +75,7 @@
 
 		button {
 			font-size: .95rem;
-			padding: .1rem;
+			padding: .1rem .3rem;
 		}
 
 		h3 {
@@ -122,25 +125,66 @@
 			</fieldset>
 			<fieldset>
 				<legend>Food Preference:</legend>
-				<div class="field">
+				<div class="field2">
 					<input type="radio"
 						   name="food"
 						   id="vegetarian"
 						   value="vegetarian"> <label for="vegetarian">vegetarian</label>
 				</div>
-				<div class="field">
+				<div class="field2">
 					<input type="radio"
 						   name="food"
 						   id="vegan"
 						   value="vegan"> <label for="vegan">vegan</label>
 				</div>
-				<div class="field">
+				<div class="field2">
 					<input type="radio"
 						   name="food"
 						   id="noPreference"
 						   value="noPreference"> <label for="noPreference">no preference</label>
 				</div>
 			</fieldset>
+
+			<fieldset>
+				<legend>Activities</legend>
+				<div class="field2">
+					<input type="checkbox"
+						   name="activities"
+						   id="yoga"
+						   value="yoga"> <label for="yoga">yoga</label>
+				</div>
+				<div class="field2">
+					<input type="checkbox"
+						   name="activities"
+						   id="pilates"
+						   value="pilates"> <label for="pilates">pilates</label>
+				</div>
+				<div class="field2">
+					<input type="checkbox"
+						   name="activities"
+						   id="strengthTraining"
+						   value="strengthTraining"> <label for="strengthTraining">strength training</label>
+				</div>
+				<div class="field2">
+					<input type="checkbox"
+						   name="activities"
+						   id="boxing"
+						   value="boxing"> <label for="boxing">boxing</label>
+				</div>
+				<div class="field2">
+					<input type="checkbox"
+						   name="activities"
+						   id="cardio"
+						   value="cardio"> <label for="cardio">cardio</label>
+				</div>
+				<div class="field2">
+					<input type="checkbox"
+						   name="activities"
+						   id="meditation"
+						   value="meditation"> <label for="meditation">meditation</label>
+				</div>
+			</fieldset>
+
 			<div class="buttons">
 				<button>Submit</button>
 			</div>
@@ -156,11 +200,13 @@
 
 		formElem.addEventListener('submit', (e) => {
 			e.preventDefault();
-			const formData = new FormData(formElem);
-			const formDataObj = {};
+			const formData = new FormData(e.target);
+			console.log(formData);
+			const formDataObj = { };
 			formData.forEach((value, key) => {
 				formDataObj[key] = value;
 			});
+				formDataObj.activities = formData.getAll('activities')
 			outputElem.innerText = JSON.stringify(formDataObj, null, 2);
 		});
 
