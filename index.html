@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1.0">
+	<title>target and currentTarget</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			padding: 1rem;
+		}
+
+		h1 {
+			margin-bottom: 1rem;
+			background-color: rgb(124, 218, 124);
+		}
+
+		p {
+			background-color: rgb(97, 194, 97);
+			user-select: none;
+		}
+
+		section {
+			display: flex;
+			gap: 1rem;
+		}
+
+		.card {
+			background-color: lightgreen;
+			width: 20rem;
+			padding: 1rem;
+			cursor: default
+		}
+
+		.data {
+			background-color: #eee;
+			width: 30rem;
+			padding: 1rem 1.5rem;
+			font-family: 'Courier New', Courier, monospace;
+		}
+
+		.targetNodeName {
+			font-weight: bold;
+			color: blue;
+		}
+
+		.currentTargetNodeName {
+			font-weight: bold;
+			color: red;
+		}
+
+		h3 {
+			margin-top: .5rem;
+		}
+
+		ul {
+			margin-left: 1rem;
+			list-style: none;
+		}
+		.note {
+			font-style: italic;
+			font-family: arial;
+			color: #777;
+		}
+	</style>
+</head>
+
+<body>
+	<section>
+		<div class="card">
+			<h1>Test</h1>
+			<p>Lorem ipsum dolor sit amet <strong>consectetur</strong> adipisicing elit. Voluptatum officiis eligendi,
+				praesentium ducimus <em>blanditiis</em> iusto perferendis temporibus nostrum animi aspernatur unde ut
+				quo aliquid
+				consequuntur quis iste eveniet illo placeat.
+				Magnam debitis quos totam dicta quas vero voluptatum harum tempore aut tenetur, rerum ad nam ullam
+				fugit, unde voluptatem quaerat veniam soluta. Inventore possimus distinctio temporibus perferendis
+				exercitationem veniam assumenda.
+				Libero nemo non quo alias inventore ipsam deleniti odit sunt vero eligendi sint eos dolor nulla, rerum
+				cum, dignissimos corrupti odio et provident impedit? Qui, tempora ad! Eum, incidunt dolores?</p>
+		</div>
+		<div class="data">
+			<h3>e.target</h3>
+			<ul>
+				<li class="note">the element that triggered the event</li>
+				<li>nodeName: <span class="targetNodeName"></span></li>
+			</ul>
+			<h3>e.currentTarget</h3>
+			<ul>
+				<li class="note">the element that the event listener is attached to</li>
+				<li>nodeName: <span class="currentTargetNodeName"></span></li>
+			</ul>
+		</div>
+	</section>
+	<script>
+		const cardElem = document.querySelector('.card');
+		const targetNodeNameElem = document.querySelector('.targetNodeName');
+		const currentTargetNodeNameElem = document.querySelector('.currentTargetNodeName');
+
+		cardElem.addEventListener('click', (e) => {
+			const targetElem = e.target;
+			const currentTargetElem = e.currentTarget;
+
+			targetElem.style.backgroundColor = 'blue';
+			targetNodeNameElem.innerText = targetElem.nodeName;
+
+			currentTargetElem.style.border = '2px solid red';
+			currentTargetNodeNameElem.innerText = currentTargetElem.nodeName;
+
+		})
+	</script>
+</body>
+
+</html>
