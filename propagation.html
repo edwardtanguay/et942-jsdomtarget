@@ -58,6 +58,7 @@
 
 		h3 {
 			margin-top: .5rem;
+			margin-bottom: .5rem;
 		}
 
 		ol {
@@ -87,7 +88,8 @@
 				cum, dignissimos corrupti odio et provident impedit? Qui, tempora ad! Eum, incidunt dolores?</p>
 		</div>
 		<div class="data">
-			<h3>events</h3>
+			<h3>events ( <input type="checkbox"
+					   id="check"> stopPropation )</h3>
 			<ol>
 			</ol>
 		</div>
@@ -99,6 +101,7 @@
 		const pElem = document.querySelector('p');
 		const strongElem = document.querySelector('strong');
 		const emElem = document.querySelector('em');
+		const checkElem = document.getElementById("check");
 
 		const showEvent = (text) => {
 			const li = document.createElement('li');
@@ -107,19 +110,33 @@
 		};
 
 		cardElem.addEventListener('click', (e) => {
+			if (checkElem.checked) {
+				e.stopPropagation();
+			}
 			showEvent('div.card clicked');
 		});
 		h1Elem.addEventListener('click', (e) => {
+			if (checkElem.checked) {
+				e.stopPropagation();
+			}
 			showEvent('h1 clicked');
 		});
 		pElem.addEventListener('click', (e) => {
+			if (checkElem.checked) {
+				e.stopPropagation();
+			}
 			showEvent('p clicked');
 		});
 		strongElem.addEventListener('click', (e) => {
+			if (checkElem.checked) {
+				e.stopPropagation();
+			}
 			showEvent('strong clicked');
 		});
 		emElem.addEventListener('click', (e) => {
-			e.stopPropagation();
+			if (checkElem.checked) {
+				e.stopPropagation();
+			}
 			showEvent('em clicked');
 		});
 	</script>
